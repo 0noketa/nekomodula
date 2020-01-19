@@ -1,0 +1,2 @@
+MODULE Global
+END Global.
