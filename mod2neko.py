@@ -71,7 +71,7 @@ def converterForType(t):
 
 def putVarInit(name, sgn, val):
 	global procDpt
-	if procDpt == 1 and sgn != "-":
+	if procDpt == 0 and sgn != "-":
 		print("var " + name + " = " + exportsRef + "." + name + " = " + val)
 	else:
 		print("var " + name + " = " + val)
@@ -106,16 +106,16 @@ def f(args):
 @awkl.add("""(PROCEDURE)\s+([a-zA-Z][a-zA-Z0-9_]*)(|\-)\s*\((\s*[a-zA-Z][a-zA-Z0-9_]*(?:\s*,\s*[a-zA-Z][a-zA-Z0-9_]*)*\s*)\)""")
 def f(args):
 	global procDpt, procName
-	procDpt += 1; procName=args[2]
 
 	putVarInit(args[2], args[3], " function(" + args[4] + ") {")
+	procDpt += 1; procName=args[2]
 
 @awkl.add("""(PROCEDURE)\s+([a-zA-Z][a-zA-Z0-9_]*)(|\-)""")
 def f(args):
 	global procDpt, procName
-	procDpt += 1; procName=args[2]
 
 	putVarInit(args[2], args[3], " function() {")
+	procDpt += 1; procName=args[2]
 
 @awkl.add("""CONST\s+([a-zA-Z][a-zA-Z0-9_]*)(|\-)\s*\=\s*(.*)""")
 def f(args):

@@ -141,9 +141,14 @@ PROCEDURE MIN(x, y)
 	PROCEDURE f(a)
 	VAR i
 	VAR j = LENGTH(a)
-	VAR min = ‭1073741823‬
+	VAR min
 	BEGIN
-		FOR i := 0 TO j DO
+		IF LENGTH(a) == 0 THEN
+			RETURN NIL
+		END
+
+		min := a[0]
+		FOR i := 1 TO j DO
 			IF a[i] < min THEN
 				min := a[i]
 			END
@@ -167,9 +172,14 @@ PROCEDURE MAX(x, y)
 	PROCEDURE f(a)
 	VAR i
 	VAR j = LENGTH(a)
-	VAR max = ‭0
+	VAR max
 	BEGIN
-		FOR i := 0 TO j DO
+		IF LENGTH(a) == 0 THEN
+			RETURN NIL
+		END
+
+		max := a[0]
+		FOR i := 1 TO j DO
 			IF a[i] > max THEN
 				axn := a[i]
 			END
